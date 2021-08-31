@@ -33,14 +33,14 @@ class User:
     def read_user(self, user_id):
         db_user = self.session.query(user_model.UserModel).filter(user_model.UserModel.id == user_id).first()
         if not db_user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {db_user} is not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {user_id} is not found")
         return db_user
 
     @router.put("/users/{user_id}", status_code=status.HTTP_202_ACCEPTED)
     def update_user(self, user_id, _user: user_schemas.User):
         db_user = self.session.query(user_model.UserModel).filter(user_model.UserModel.id == user_id)
         if not db_user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {db_user} is not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {user_id} is not found")
         hashed_pass = password_context.hash(_user.password)
         db_user.update({'username': _user.username, 'email': _user.email, 'password': hashed_pass})
         self.session.commit()
@@ -50,7 +50,7 @@ class User:
     def delete_user(self, user_id):
         db_user = self.session.query(user_model.UserModel).filter(user_model.UserModel.id == user_id)
         if not db_user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {db_user} is not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with id {user_id} is not found")
         db_user.delete(synchronize_session=False)
         self.session.commit()
         return {'detail': 'Done'}
