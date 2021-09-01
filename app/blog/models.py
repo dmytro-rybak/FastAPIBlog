@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
 
 
-likes_table = Table('association', Base.metadata,
+likes_table = Table('likes', Base.metadata,
                     Column('post_id', Integer, ForeignKey('post.post_id'), primary_key=True),
                     Column('user_id', Integer, ForeignKey('user.user_id'), primary_key=True))
 
