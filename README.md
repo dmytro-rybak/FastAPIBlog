@@ -5,6 +5,7 @@
 A simple API simulating a blog done with Python and FastAPI framework.\
 The project doesn't serve much purpose, it's just for learning.
 Detailed documentation provided by `Swagger` is available by going `/docs` path.
+<br>
 
 ## Installation
 
