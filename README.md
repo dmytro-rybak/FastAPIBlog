@@ -1,5 +1,11 @@
 # FastAPIBlog
 
+## Summary
+
+A simple API simulating a blog done with Python and FastAPI framework.\
+The project doesn't serve much purpose, it's just for learning.
+Detailed documentation provided by `Swagger` is available by going `/docs` path.
+
 ## Installation
 
 Create virtual environment (Ubuntu):
@@ -48,7 +54,12 @@ To run `uvicorn` server:
 ```
 <br>
 
+> If you encounter any issues, check out "Possible issues" section.
+
 ## Possible issues
+
+<details><summary>Show list of possible issues and their solutions</summary>
+<br>
 
 If port `:5432` is already occupied:
 ```shell
@@ -62,3 +73,5 @@ If container already exists:
 (env) $ docker ps -a
 (env) $ docker rm <container_id>
 ```
+</details>
+
