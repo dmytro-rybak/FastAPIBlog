@@ -28,7 +28,7 @@ class UserCRUD:
 
     @staticmethod
     def get_all_users(session):
-        users = session.query(models.User).read_all()
+        users = session.query(models.User).all()
         return users
 
     @staticmethod

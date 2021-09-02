@@ -28,7 +28,7 @@ class PostCRUD:
 
     @staticmethod
     def read_all(session):
-        posts = session.query(models.Post).read_all()
+        posts = session.query(models.Post).all()
         return posts
 
     @staticmethod
