@@ -1,2 +1,2 @@
 from db.database import Base
-from blog import models
+from models import user, post
