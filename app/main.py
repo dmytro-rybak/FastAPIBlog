@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from blog.routers.user_router import user_router
-from blog.routers.post_router import post_router
+from routers.root import root_router
 
 app = FastAPI()
 
@@ -10,5 +9,4 @@ def hello_world():
     return {"Hello": "World"}
 
 
-app.include_router(user_router)
-app.include_router(post_router)
+app.include_router(root_router)

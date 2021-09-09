@@ -1,5 +1,6 @@
 from fastapi import status, HTTPException
-from blog import models
+from models.post import Post
+from models.user import User
 
 
 class PostCRUD:
@@ -7,7 +8,7 @@ class PostCRUD:
     @staticmethod
     def create(session, post_data):
         try:
-            new_post = models.Post(**post_data)
+            new_post = Post(**post_data)
             session.add(new_post)
             session.commit()
             session.refresh(new_post)
@@ -18,7 +19,7 @@ class PostCRUD:
 
     @staticmethod
     def read(session, post_id):
-        post = session.query(models.Post).filter(models.Post.post_id == post_id).first()
+        post = session.query(Post).filter(Post.post_id == post_id).first()
 
         if not post:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -28,12 +29,12 @@ class PostCRUD:
 
     @staticmethod
     def read_all(session):
-        posts = session.query(models.Post).all()
+        posts = session.query(Post).all()
         return posts
 
     @staticmethod
     def update(session, post_id, post_data):
-        post = session.query(models.Post).filter(models.Post.post_id == post_id).first()
+        post = session.query(Post).filter(Post.post_id == post_id).first()
 
         if not post:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -50,7 +51,7 @@ class PostCRUD:
 
     @staticmethod
     def delete(session, post_id):
-        post = session.query(models.Post).filter(models.Post.post_id == post_id)
+        post = session.query(Post).filter(Post.post_id == post_id)
 
         if not post:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -63,8 +64,8 @@ class PostCRUD:
 
     @staticmethod
     def like(session, post_id, user_id):
-        post = session.query(models.Post).filter(models.Post.post_id == post_id).first()
-        user = session.query(models.User).filter(models.User.user_id == user_id).first()
+        post = session.query(Post).filter(Post.post_id == post_id).first()
+        user = session.query(User).filter(User.user_id == user_id).first()
 
         if not post and not user:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,

@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import List
 
 
 class BasePost(BaseModel):
@@ -18,18 +17,3 @@ class BaseLike(BaseModel):
 class ShowPost(BasePost):
     class Config:
         orm_mode = True
-
-
-class BaseUser(BaseModel):
-    username: str
-    email: str
-    password: str
-
-
-class ShowUser(BaseUser):
-    posts: List[ShowPost] = []
-    liked_posts: List[ShowPost] = []
-
-    class Config:
-        orm_mode = True
-
